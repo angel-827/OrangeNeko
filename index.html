@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>胖橘文化有限公司</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B4513', // 橘咖色作为主色调，更具活力和ACG风格
+                        secondary: '#7B61FF', // 紫色作为辅助色
+                        accent: '#FFD166', // 黄色作为强调色
+                        dark: '#2A2D34', // 深色背景
+                        light: '#F7F9FC', // 浅色背景
+                    },
+                    fontFamily: {
+                        msyh: ['"Microsoft JhengHei"', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'base': '1rem',
+                        'lg': '1.25rem',
+                        'xl': '1.5rem',
+                        '2xl': '2rem',
+                        '3xl': '2.5rem',
+                        '4xl': '3rem',
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+
+            .bg-fantasy {
+                background-image: url('https://picsum.photos/id/1/1920/1080');
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+            }
+
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-item-hover {
+                @apply transition-all duration-300 hover:text-primary hover:scale-110;
+            }
+
+            .btn-primary {
+                @apply bg-primary hover:bg-primary/80 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-primary/30;
+            }
+
+            .btn-secondary {
+                @apply bg-secondary hover:bg-secondary/80 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-secondary/30;
+            }
+
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+            }
+
+            .language-option {
+                @apply block px-4 py-2 hover:bg-secondary/50 transition-colors duration-200 cursor-pointer;
+            }
+
+            .carousel-slide {
+                @apply min-w-full h-full opacity-0 absolute transition-opacity duration-1000;
+            }
+
+            .carousel-slide.active {
+                @apply opacity-100 relative;
+            }
+
+            .carousel-indicator {
+                @apply w-4 h-4 rounded-full bg-primary/30 cursor-pointer transition-all duration-300 hover:bg-primary/70;
+            }
+
+            .carousel-indicator.active {
+                @apply bg-primary w-10;
+            }
+
+            .mission-card {
+                @apply bg-white rounded-xl shadow-md p-6 mb-6 transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+            }
+
+            .business-card {
+                @apply bg-white rounded-xl shadow-md p-6 mb-6 border-l-4 border-primary transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+            }
+
+            .modern-card {
+                @apply bg-white rounded-xl shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
+            }
+
+            .modern-card-icon {
+                @apply w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4 text-primary text-2xl;
+            }
+
+            .glass-effect {
+                @apply bg-white/80 backdrop-blur-md shadow-lg rounded-xl;
+            }
+
+            .acg-card {
+                @apply relative overflow-hidden rounded-xl shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-2;
+            }
+
+            .acg-card-overlay {
+                @apply absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6;
+            }
+
+            .animated-gradient {
+                background-size: 400% 400%;
+                animation: gradient 15s ease infinite;
+            }
+
+            @keyframes gradient {
+                0% {
+                    background-position: 0% 50%;
+                }
+
+                50% {
+                    background-position: 100% 50%;
+                }
+
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            .floating {
+                animation: float 6s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0% {
+                    transform: translateY(0px);
+                }
+
+                50% {
+                    transform: translateY(-20px);
+                }
+
+                100% {
+                    transform: translateY(0px);
+                }
+            }
+
+            .neon-text {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #A67C52, 0 0 20px #A67C52, 0 0 25px #A67C52;
+            }
+
+            .scale-hover {
+                @apply transition-transform duration-300 hover:scale-105;
+            }
+        }
+    </style>
+    <!-- 引入Inter字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-light font-msyh text-dark overflow-x-hidden">
+    <!-- ACG风格背景装饰 -->
+    <div class="fixed inset-0 z-0 opacity-20 pointer-events-none">
+        <div class="absolute top-20 left-10 w-40 h-40 bg-primary/30 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-60 h-60 bg-secondary/30 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/2 left-1/4 w-32 h-32 bg-accent/30 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/3 right-1/3 w-48 h-48 bg-primary/30 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- 顶部导航栏 -->
+    <header class="sticky top-0 z-50 glass-effect border-b border-primary/20">
+        <div class="container mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex justify-between items-center w-full md:w-auto">
+                <div class="flex items-center">
+                    <div class="relative">
+                        <img src="image/home/NekoLogo.png" alt="胖橘文化有限公司" class="w-16 h-16 rounded-full mr-4 border-2 border-primary">
+                        <div class="absolute -top-1 -right-1 w-5 h-5 bg-accent rounded-full flex items-center justify-center text-xs font-bold text-dark">
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-primary mb-1" data-lang-key="company-name">胖橘文化有限公司</h1>
+                        <p class="text-base text-dark/70">Orange Neko Ltd.</p>
+                    </div>
+                </div>
+                <button class="md:hidden text-primary text-2xl" id="menu-toggle">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-8 mt-4 md:mt-0" id="nav-menu">
+                <a href="#home" class="text-xl font-medium nav-item-hover" data-lang-key="nav-home">首頁</a>
+                <a href="#mission" class="text-xl font-medium nav-item-hover" data-lang-key="nav-mission">經營理念</a>
+                <a href="#business" class="text-xl font-medium nav-item-hover" data-lang-key="nav-business">主營業務</a>
+                <a href="#contact" class="text-xl font-medium nav-item-hover" data-lang-key="nav-contact">聯繫我們</a>
+            </div>
+
+            <div class="flex items-center space-x-4 mt-4 md:mt-0">
+                <div class="relative">
+                    <button class="flex items-center space-x-1 text-base" id="language-selector">
+                        <i class="fa fa-globe"></i>
+                        <span id="current-language">繁體中文</span>
+                        <i class="fa fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="hidden absolute right-0 mt-2 w-40 bg-light shadow-lg rounded-md z-50" id="language-dropdown">
+                        <div class="language-option" data-lang="zh-Hant">繁體中文</div>
+                        <div class="language-option" data-lang="zh-Hans">简体中文</div>
+						<div class="language-option" data-lang="en">English</div>
+                        <div class="language-option" data-lang="ja">日本語</div>
+                        <div class="language-option" data-lang="ko">한국어</div>
+						<div class="language-option" data-lang="fr">Français</div>
+						<div class="language-option" data-lang="de">Deutsch</div>
+						<div class="language-option" data-lang="ar">عربي</div>
+						<div class="language-option" data-lang="es">español</div>
+						<div class="language-option" data-lang="tr">Türkçe</div>
+                    </div>
+                </div>
+                <div class="text-sm text-dark/70 whitespace-nowrap">
+					<!-- <span id="visitorCount">訪問人次: 0</span> -->
+					<!-- <span class="mx-1">|</span> -->
+                    <span id="current-time">2025-05-19 12:00:00</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- 首页 -->
+        <section id="home" class="min-h-screen flex flex-col justify-center items-center py-16">
+            <div class="w-full max-w-7xl">
+                <!-- 英雄区域 -->
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl mb-16">
+                    <div class="absolute inset-0 bg-gradient-to-r from-dark/80 to-dark/6 z-10"></div>
+                    <!-- 更换为游戏画风的背景 -->
+                    <img src="image/home/pizaTRPG.png" alt="胖橘文化" class="w-full h-[500px] object-cover">
+                    <div class="absolute inset-0 z-20 flex flex-col justify-center px-8 md:px-16">
+                        <!-- 调整文字颜色，与背景协调 -->
+                        <h2 class="text-[clamp(2.5rem,6vw,4rem)] font-bold text-white mb-4" data-lang-key="hero-title">
+                            胖橘文化<br>TRPG體驗平台
+                        </h2>
+                        <p class="text-[clamp(1.2rem,3vw,1.8rem)] text-white/90 mb-8 max-w-3xl" data-lang-key="hero-desc">
+                            探索奇幻世界，釋放想像力，建立真摯連結
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <button onclick="window.location.href=''" class="btn-primary scale-hover">
+                                <i class="fa fa-play-circle mr-2"></i>
+                                <span data-lang-key="hero-btn-1">立即體驗</span>
+                            </button>
+                            <button onclick="window.location.href=''" class="btn-secondary scale-hover">
+                                <i class="fa fa-info-circle mr-2"></i>
+                                <span data-lang-key="hero-btn-2">了解更多</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 公司简介部分 -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-16 animated-gradient"
+                    style="background: linear-gradient(135deg, #A67C5210, #FF8C0010, #FFD16610);">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h3 class="text-3xl font-bold text-primary mb-6 relative inline-block" data-lang-key="home-company-title">
+                                公司簡介
+                                <div class="absolute -bottom-2 left-0 w-1/2 h-1 bg-primary rounded-full"></div>
+                            </h3>
+                            <p class="text-lg leading-relaxed mb-6" data-lang-key="home-company-desc">
+                                胖橘文化有限公司成立於2025年，旨在為生活緊湊的現代人減緩壓力、並在遊戲世界重新燃起生命力。
+                            </p>
+                            <p class="text-lg leading-relaxed mb-8" data-lang-key="home-company-desc2">
+                                我們擅長策劃各種TRPG主題活動，創造一個放鬆、有趣、富有想像力的空間，讓人們在體驗不同的角色和故事同時，看見人生的諸多可能性。
+                            </p>
+                            <!-- <div class="flex flex-wrap gap-4"> -->
+                                <!-- <div class="bg-primary/10 rounded-lg p-4 flex items-center"> -->
+                                    <!-- <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4"> -->
+                                        <!-- <i class="fa fa-users text-primary text-xl"></i> -->
+                                    <!-- </div> -->
+                                    <!-- <div> -->
+                                        <!-- <p class="text-primary font-bold text-2xl">5000+</p> -->
+                                        <!-- <p class="text-dark/70" data-lang-key="home-stats-1">活躍用戶</p> -->
+                                    <!-- </div> -->
+                                <!-- </div> -->
+                                <!-- <div class="bg-secondary/10 rounded-lg p-4 flex items-center"> -->
+                                    <!-- <div class="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center mr-4"> -->
+                                        <!-- <i class="fa fa-calendar text-secondary text-xl"></i> -->
+                                    <!-- </div> -->
+                                    <!-- <div> -->
+                                        <!-- <p class="text-secondary font-bold text-2xl">300+</p> -->
+                                        <!-- <p class="text-dark/70" data-lang-key="home-stats-2">活動舉辦</p> -->
+                                    <!-- </div> -->
+                                <!-- </div> -->
+                                <!-- <div class="bg-accent/10 rounded-lg p-4 flex items-center"> -->
+                                    <!-- <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mr-4"> -->
+                                        <!-- <i class="fa fa-star text-accent text-xl"></i> -->
+                                    <!-- </div> -->
+                                    <!-- <div> -->
+                                        <!-- <p class="text-accent font-bold text-2xl">98%</p> -->
+                                        <!-- <p class="text-dark/70" data-lang-key="home-stats-3">滿意度</p> -->
+                                    <!-- </div> -->
+                                <!-- </div> -->
+                            <!-- </div> -->
+                        </div>
+                        <div class="relative">
+                            <div class="rounded-2xl overflow-hidden shadow-xl">
+                                <img src="image/home/CompanyActivity.png" alt="公司活动" class="w-full h-auto">
+                            </div>
+                            <div class="absolute -bottom-6 -left-6 w-40 h-40 bg-primary/20 rounded-full blur-2xl z-0"></div>
+                            <div class="absolute -top-6 -right-6 w-32 h-32 bg-secondary/20 rounded-full blur-2xl z-0"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 活动资讯部分 -->
+                <div class="mb-16">
+                    <div class="flex justify-between items-center mb-8">
+                        <h3 class="text-3xl font-bold text-primary relative inline-block" data-lang-key="home-events-title">
+                            最新活動
+                            <div class="absolute -bottom-2 left-0 w-1/2 h-1 bg-primary rounded-full"></div>
+                        </h3>
+                        <a href="activity.html#activity" class="text-primary font-bold flex items-center hover:underline" data-lang-key="home-events-more">
+                            查看全部 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- 活动卡片1 -->
+                        <div class="acg-card group">
+                            <img src="image/Activity/竹推宣傳圖20250802.jpg" alt="TRPG在新竹" class="w-full h-100 object-cover">
+                            <div class="acg-card-overlay">
+                                <span class="text-accent font-bold mb-2" data-lang-key="event-tag-new">新活動</span>
+                                <h4 class="text-2xl font-bold text-white mb-2" data-lang-key="event-1-title">TRPG在新竹</h4>
+                                <p class="text-white/80 mb-4" data-lang-key="event-1-desc">
+                                    在新竹地區固定舉辦的新手推廣活動，也歡迎TRPG愛好者們一起同樂。
+                                </p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-white/70 flex items-center">
+                                        <i class="fa fa-calendar mr-2"></i> 2025-08-02
+                                    </span>
+                                    <button onclick="window.location.href='https://trpgbamboo.kktix.cc/events/trpgbamboo010'" class="bg-primary/80 hover:bg-primary text-white px-4 py-2 rounded-full text-sm transition-colors">
+                                        <span data-lang-key="event-register">立即報名</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+						<!-- 活动卡片2 -->
+                        <div class="acg-card group">
+                            <img src="image/Activity/竹推DND专场20250628.jpg" alt="TRPG在新竹" class="w-full h-100 object-cover">
+                            <div class="acg-card-overlay">
+                                <span class="text-accent font-bold mb-2" data-lang-key="event-tag-featured">精選</span>
+                                <h4 class="text-2xl font-bold text-white mb-2" data-lang-key="event-2-title">專場活動</h4>
+                                <p class="text-white/80 mb-4" data-lang-key="event-2-desc">
+                                    喜歡⚔️劍與魔法🔥世界的朋友，歡迎一起來體驗桌上角色扮演遊戲的魅力！
+                                </p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-white/70 flex items-center">
+                                        <i class="fa fa-calendar mr-2"></i> 2025-06-28
+                                    </span>
+									<button onclick="window.location.href='https://trpgbamboo.kktix.cc/events/trpgbamboospecial02'" class="bg-primary/80 hover:bg-primary text-white px-4 py-2 rounded-full text-sm transition-colors"> 
+                                        <span data-lang-key="event-register">立即報名</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 活动卡片3 -->
+                        <div class="acg-card group">
+                            <img src="image/Activity/竹推宣傳圖20250524.jpg" alt="TRPG在新竹" class="w-full h-100 object-cover">
+                            <div class="acg-card-overlay">
+                                <span class="text-accent font-bold mb-2" data-lang-key="event-tag-popular">熱門</span>
+                                <h4 class="text-2xl font-bold text-white mb-2" data-lang-key="event-3-title">TRPG在新竹</h4>
+                                <p class="text-white/80 mb-4" data-lang-key="event-3-desc">
+                                    如果你喜歡打桌遊、玩MMORPG、或著迷於古典的回合制冒險，那麼請絕對不要錯過！
+                                </p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-white/70 flex items-center">
+                                        <i class="fa fa-calendar mr-2"></i> 2025-05-24
+                                    </span>
+									<button onclick="window.location.href='https://trpgbamboo.kktix.cc/events/trpgbamboo009'" class="bg-primary/80 hover:bg-primary text-white px-4 py-2 rounded-full text-sm transition-colors"> 
+                                        <span data-lang-key="event-register">立即報名</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 合作伙伴 -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                    <h3 class="text-3xl font-bold text-primary mb-8 text-center" data-lang-key="home-partners">合作夥伴</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-2 gap-8 items-center">
+                        <div class="flex justify-center opacity-70 hover:opacity-100 transition-opacity">
+                            <img src="image/partner/LionsVault.png" alt="Partener1_LionsVault" class="h-20 object-contain">
+                        </div>
+                        <div class="flex justify-center opacity-70 hover:opacity-100 transition-opacity">
+                            <img src="image/partner/MiBao.png" alt="Partener2_Mibao" class="h-20 object-contain">
+                        </div>
+                        <div class="flex justify-center opacity-70 hover:opacity-100 transition-opacity">
+                            <h4 class="text-2xl font-bold text-primary mb-6 text-center" data-lang-key="partners1">老獅的藏寶庫</h4>
+                        </div>
+                        <div class="flex justify-center opacity-70 hover:opacity-100 transition-opacity">
+                            <h4 class="text-2xl font-bold text-primary mb-6 text-center" data-lang-key="partners2">謎寶空間</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 经营理念 -->
+        <section id="mission" class="min-h-screen flex flex-col justify-center items-center py-16">
+            <div class="w-full max-w-7xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-primary mb-4 relative inline-block" data-lang-key="mission-title">
+                        經營理念
+                        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-primary rounded-full"></div>
+                    </h2>
+                    <p class="text-xl text-dark/70 max-w-3xl mx-auto mt-6" data-lang-key="mission-desc">
+                        我們將通過TRPG創造連結，幫助充滿壓力的現代人，以角色扮演體驗不同人生，再將冒險得到的信心和感動帶回原本的生活。
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- 经营理念分类1 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 relative overflow-hidden scale-hover">
+                        <div class="absolute -top-6 -right-6 w-24 h-24 bg-primary/10 rounded-full blur-xl"></div>
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6">
+                                <i class="fa fa-heart text-primary text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-primary mb-4" data-lang-key="mission-1-title">關懷現代人</h3>
+                            <p class="text-dark/80 leading-relaxed" data-lang-key="mission-1-desc">
+                                沉浸感強烈的TRPG遊戲，有助於緩解當下人們來自學習、工作、和生活的壓力，重新找回生活節奏。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 经营理念分类2 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 relative overflow-hidden scale-hover">
+                        <div class="absolute -top-6 -right-6 w-24 h-24 bg-secondary/10 rounded-full blur-xl"></div>
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mb-6">
+                                <i class="fa fa-users text-secondary text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-primary mb-4" data-lang-key="mission-2-title">活絡社群</h3>
+                            <p class="text-dark/80 leading-relaxed" data-lang-key="mission-2-desc">
+                                我們致力於讓喜愛玩遊戲的朋友，能藉由玩TRPG參與聚會和活動，更加強化人與人之間的交流。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 经营理念分类3 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 relative overflow-hidden scale-hover">
+                        <div class="absolute -top-6 -right-6 w-24 h-24 bg-accent/10 rounded-full blur-xl"></div>
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mb-6">
+                                <i class="fa fa-lightbulb text-accent text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-primary mb-4" data-lang-key="mission-3-title">創新發展</h3>
+                            <p class="text-dark/80 leading-relaxed" data-lang-key="mission-3-desc">
+                                透過結合文化、教育、商業三者，我們將為客戶提供全新的桌上角色扮演活動形式和獨特體驗。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 经营理念分类4 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 relative overflow-hidden scale-hover">
+                        <div class="absolute -top-6 -right-6 w-24 h-24 bg-primary/10 rounded-full blur-xl"></div>
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6">
+                                <i class="fa fa-handshake text-primary text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-primary mb-4" data-lang-key="mission-4-title">合作共贏</h3>
+                            <p class="text-dark/80 leading-relaxed" data-lang-key="mission-4-desc">
+                                為了推動TRPG文化的發展，我們將與企業、學校、社區建立長期合作關係，以期創造多方有利的局面。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 数据统计 -->
+                <!-- <div class="mt-16 grid md:grid-cols-4 gap-8"> -->
+                    <!-- <div class="bg-primary/10 rounded-2xl p-8 text-center"> -->
+                        <!-- <p class="text-4xl font-bold text-primary mb-2">5000+</p> -->
+                        <!-- <p class="text-dark/70" data-lang-key="stats-users">活躍用戶</p> -->
+                    <!-- </div> -->
+                    <!-- <div class="bg-secondary/10 rounded-2xl p-8 text-center"> -->
+                        <!-- <p class="text-4xl font-bold text-secondary mb-2">300+</p> -->
+                        <!-- <p class="text-dark/70" data-lang-key="stats-events">活動舉辦</p> -->
+                    <!-- </div> -->
+                    <!-- <div class="bg-accent/10 rounded-2xl p-8 text-center"> -->
+                        <!-- <p class="text-4xl font-bold text-accent mb-2">100+</p> -->
+                        <!-- <p class="text-dark/70" data-lang-key="stats-cities">合作城市</p> -->
+                    <!-- </div> -->
+                    <!-- <div class="bg-dark/5 rounded-2xl p-8 text-center"> -->
+                        <!-- <p class="text-4xl font-bold text-dark mb-2">98%</p> -->
+                        <!-- <p class="text-dark/70" data-lang-key="stats-satisfaction">客戶滿意度</p> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+            </div>
+        </section>
+
+        <!-- 主营业务 -->
+        <section id="business" class="min-h-screen flex flex-col justify-center items-center py-16">
+            <div class="w-full max-w-7xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-primary mb-4 relative inline-block" data-lang-key="business-title">
+                        主營業務
+                        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-primary rounded-full"></div>
+                    </h2>
+                    <p class="text-xl text-dark/70 max-w-3xl mx-auto mt-6" data-lang-key="business-desc">
+                        從線下活動規劃，到影視配音服務，我們提供多種以TRPG為主題的服務項目，並可為客戶量身訂做專屬的解決方案
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- 主营业务分类1 -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                        <div class="relative h-64">
+                            <img src="image/home/TRPGActivity.png" alt="TRPG活動規劃" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent flex items-end">
+                                <h3 class="text-2xl font-bold text-white p-6" data-lang-key="business-1-title">TRPG活動規劃</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="space-y-4">
+                                <div class="bg-primary/5 rounded-xl p-4 transition-all duration-300 hover:shadow-md">
+                                    <h4 class="text-xl font-semibold text-primary mb-2 flex items-center">
+                                        <i class="fa fa-building mr-3"></i>
+                                        <span data-lang-key="business-1-sub1">企業團康活動</span>
+                                    </h4>
+                                    <p class="text-dark/80 leading-relaxed" data-lang-key="business-1-sub1-desc">
+                                        善用TRPG強互動性的特點，在玩遊戲的同時，可以有效提升同仁間的溝通效率及團隊向心力，使公司整體士氣提升。
+                                    </p>
+                                </div>
+                                <div class="bg-primary/5 rounded-xl p-4 transition-all duration-300 hover:shadow-md">
+                                    <h4 class="text-xl font-semibold text-primary mb-2 flex items-center">
+                                        <i class="fa fa-school mr-3"></i>
+                                        <span data-lang-key="business-1-sub2">學校營隊活動</span>
+                                    </h4>
+                                    <p class="text-dark/80 leading-relaxed" data-lang-key="business-1-sub2-desc">
+                                        將教育課程與TRPG遊戲方式結合，並通過營隊方式呈現，讓學生在充滿趣味的遊戲過程中培養想像力、邏輯思維及社交技巧。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 主营业务分类2 -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                        <div class="relative h-64">
+                            <img src="image/home/crazyhospital.png" alt="影視廣告配音" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent flex items-end">
+                                <h3 class="text-2xl font-bold text-white p-6" data-lang-key="business-2-title">影視廣告配音</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="space-y-4">
+                                <div class="bg-secondary/5 rounded-xl p-4 transition-all duration-300 hover:shadow-md">
+                                    <h4 class="text-xl font-semibold text-secondary mb-2 flex items-center">
+                                        <i class="fa fa-film mr-3"></i>
+                                        <span data-lang-key="business-2-sub1">影視作品配音</span>
+                                    </h4>
+                                    <p class="text-dark/80 leading-relaxed" data-lang-key="business-2-sub1-desc">
+                                        為電影、電視劇、動畫等影視作品提供專業配音服務，包括角色配音、旁白配音等，打造高品質的聲音效果。
+                                    </p>
+                                </div>
+                                <div class="bg-secondary/5 rounded-xl p-4 transition-all duration-300 hover:shadow-md">
+                                    <h4 class="text-xl font-semibold text-secondary mb-2 flex items-center">
+                                        <i class="fa fa-ad mr-3"></i>
+                                        <span data-lang-key="business-2-sub2">商業廣告配音</span>
+                                    </h4>
+                                    <p class="text-dark/80 leading-relaxed" data-lang-key="business-2-sub2-desc">
+                                        為企業廣告、產品宣傳片、企業形象片等提供定制化配音服務，根據不同的風格和需求，選擇合適的配音演員和表現方式。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 主营业务分类3 -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                        <div class="relative h-64">
+                            <img src="image/home/culture.jpg" alt="文化體驗服務" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent flex items-end">
+                                <h3 class="text-2xl font-bold text-white p-6" data-lang-key="business-3-title">文化體驗服務</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="space-y-4">
+                                <div class="bg-primary/5 rounded-xl p-4 transition-all duration-300 hover:shadow-md">
+                                    <h4 class="text-xl font-semibold text-primary mb-2 flex items-center">
+                                        <i class="fa fa-mask mr-3"></i>
+                                        <span data-lang-key="business-3-sub1">角色扮演体验</span>
+                                    </h4>
+                                    <p class="text-dark/80 leading-relaxed" data-lang-key="business-3-sub1-desc">
+                                        让客户身临其境地体验各种文化背景下的角色扮演，感受不同文化的魅力。
+                                    </p>
+                                </div>
+                                <div class="bg-primary/5 rounded-xl p-4 transition-all duration-300 hover:shadow-md">
+                                    <h4 class="text-xl font-semibold text-primary mb-2 flex items-center">
+                                        <i class="fa fa-landmark mr-3"></i>
+                                        <span data-lang-key="business-3-sub2">文化活动参与</span>
+                                    </h4>
+                                    <p class="text-dark/80 leading-relaxed" data-lang-key="business-3-sub2-desc">
+                                        组织客户参与各类文化活动，加深对不同文化的理解和认识。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					
+					<!-- 主营业务分类4 -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                        <div class="relative h-64">
+                            <img src="image/home/createrole.jpg" alt="培訓與指導" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent flex items-end">
+                                <h3 class="text-2xl font-bold text-white p-6" data-lang-key="business-4-title">培訓與指導</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="space-y-4">
+                                <div class="bg-primary/5 rounded-xl p-4 transition-all duration-300 hover:shadow-md">
+                                    <h4 class="text-xl font-semibold text-primary mb-2 flex items-center">
+                                        <i class="fa fa-graduation-cap mr-3"></i>
+                                        <span data-lang-key="business-4-sub1">TRPG教學培訓</span>
+                                    </h4>
+                                    <p class="text-dark/80 leading-relaxed" data-lang-key="business-4-sub1-desc">
+                                        為學校、教育機構和企業提供TRPG教學培訓，培養專業的TRPG教師和引導員，推動TRPG教育的發展。
+                                    </p>
+                                </div>
+                                <div class="bg-primary/5 rounded-xl p-4 transition-all duration-300 hover:shadow-md">
+                                    <h4 class="text-xl font-semibold text-primary mb-2 flex items-center">
+                                        <i class="fa fa-pencil mr-3"></i>
+                                        <span data-lang-key="business-4-sub2">TRPG劇本創作指導</span>
+                                    </h4>
+                                    <p class="text-dark/80 leading-relaxed" data-lang-key="business-4-sub2-desc">
+                                        為TRPG愛好者和從業者提供劇本創作指導，幫助他們提升劇本創作能力，創作出更精彩、更有深度的TRPG劇本。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+            </div>
+        </section>
+
+        <!-- 联系我们 -->
+        <section id="contact" class="min-h-screen flex flex-col justify-center items-center py-16">
+            <div class="w-full max-w-7xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-primary mb-4 relative inline-block" data-lang-key="contact-title">
+                        聯絡我們
+                        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-primary rounded-full"></div>
+                    </h2>
+                    <p class="text-xl text-dark/70 max-w-3xl mx-auto mt-6" data-lang-key="contact-desc">
+                        如果您有任何問題或合作意向，請隨時聯絡我們。
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-2xl space-y-5 shadow-lg p-8 md:p-12 mb-8">
+                            <h3 class="text-3xl font-bold text-primary mb-8" data-lang-key="contact-info">聯繫資訊</h3>
+                            <ul class="space-y-20">
+                                <li class="flex items-start">
+                                    <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                        <i class="fa fa-map-marker text-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-2xl font-semibold text-primary mb-1" data-lang-key="contact-address-title">地址</h4>
+                                        <p class="text-dark/80" data-lang-key="contact-address">新竹市東區</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                        <i class="fa fa-envelope text-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-2xl font-semibold text-primary mb-1" data-lang-key="contact-email-title">電子郵件</h4>
+                                        <p class="text-dark/80" data-lang-key="contact-email">lionstrpgvault@gmail.com</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                        <i class="fa fa-clock text-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-2xl font-semibold text-primary mb-1" data-lang-key="contact-hours-title">營業時間</h4>
+                                        <p class="text-dark/80" data-lang-key="contact-hours">10:00-20:00</p>
+                                    </div>
+                                </li>
+                            </ul>          
+                    </div>
+                    <div class="bg-white rounded-2xl space-y-0 shadow-lg p-8 md:p-12 mb-8">
+                                <h4 class="text-3xl font-semibold text-primary mb-8" data-lang-key="contact-follow">關注我們</h4>
+								<p class="text-1xl font-bold text-primary mb-6" data-lang-key="contact-link">點擊下方按鈕獲取活動最新資訊，商務合作請洽詢FB粉專</p>
+								<br/>
+                                <div class="flex space-x-8 grid md:grid-cols-2 md:grid-cols-2">
+                                    <a href="https://www.facebook.com/LionsTRPGVault" class="w-40 h-40 bg-[#1877F2]/10 hover:bg-[#1877F2]/80 rounded-full flex items-center justify-center text-[#1877F2] transition-colors">
+                                        <i class="fa-brands fa-facebook text-9xl"></i>
+                                    </a>
+
+                                    <a href="https://www.youtube.com/@lionstrpgvault2065" class="w-40 h-40 bg-[#FF0000]/10 hover:bg-[#FF0000]/80 rounded-full flex items-center justify-center text-[#FF0000] transition-colors">
+                                        <i class="fa-brands fa-youtube text-9xl"></i>
+                                    </a>
+                                </div>
+								<br/>
+								<div class="flex space-x-8 space-y-0 grid md:grid-cols-2 md:grid-cols-2">
+                                    <a href="https://line.me/ti/g2/iZ7gGEVk1v7zmgcWGei6P_UqlrdNF-LKT94zxQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" class="w-40 h-40 bg-[#00B900]/10 hover:bg-[#00B900]/20 rounded-full flex items-center justify-center text-[#00B900] transition-colors">
+                                        <i class="fa-brands fa-line text-9xl"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/lionstrpgvault/" class="w-40 h-40 bg-[#E4405F]/10 hover:bg-[#E4405F]/20 rounded-full flex items-center justify-center text-[#E4405F] transition-colors">
+                                        <i class="fa-brands fa-instagram text-9xl"></i>
+                                    </a>
+                                </div>
+					 </div>
+                </div>
+				<!-- <div class="rounded-2xl overflow-hidden shadow-lg h-[400px]"> -->
+                    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.6903001200644!2d121.53142571542874!3d25.054418783977215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abc7c2a05c01%3A0x2c99d99c5559b98a!2z5Y-w5a6J5p2x5aSn5a245pWZ6IG3!5e0!3m2!1szh-TW!2stw!4v1684573505200!5m2!1szh-TW!2stw" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+                <!-- </div> -->
+            </div>
+        </section>
+    </main>
+
+
+    <footer class="bg-dark text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <img src="image/home/NekoLogo.png" alt="胖橘文化有限公司" class="w-12 h-12 rounded-full mr-4">
+                        <h3 class="text-2xl font-bold text-white" data-lang-key="footer-company">胖橘文化有限公司</h3>
+                    </div>
+                    <p class="text-white/70 mb-6" data-lang-key="footer-desc">
+                        本公司以TRPG為核心，提供企業團隊建設、學校教育課程、影視配音等多元化服務，幫助現代人減輕壓力，增進交流。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/LionsTRPGVault" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/lionstrpgvault/" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@lionstrpgvault2065" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold text-white mb-6" data-lang-key="footer-quicklinks">快速連結</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-white/70 hover:text-primary transition-colors" data-lang-key="footer-home">首頁</a></li>
+                        <li><a href="#mission" class="text-white/70 hover:text-primary transition-colors" data-lang-key="footer-mission">經營理念</a></li>
+                        <li><a href="#business" class="text-white/70 hover:text-primary transition-colors" data-lang-key="footer-business">主營業務</a></li>
+                        <li><a href="#contact" class="text-white/70 hover:text-primary transition-colors" data-lang-key="footer-contact">聯繫我們</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold text-white mb-6" data-lang-key="footer-services">服務項目</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-white/70 hover:text-primary transition-colors" data-lang-key="footer-service-1">TRPG活動策劃</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-primary transition-colors" data-lang-key="footer-service-2">影視廣告配音</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-primary transition-colors" data-lang-key="footer-service-3">文化體驗服務</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-primary transition-colors" data-lang-key="footer-service-4">培訓與指導</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold text-white mb-6" data-lang-key="footer-contact">聯繫我們</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+                            <span class="text-white/70" data-lang-key="footer-address">新竹市東區</span>
+                        </li>
+                       <!--  <li class="flex items-start">
+                            <i class="fa fa-phone text-primary mt-1 mr-3"></i>
+                            <span class="text-white/70" data-lang-key="footer-phone">0912-345-678</span>
+                        </li> -->
+                        <li class="flex items-start">
+                            <i class="fa fa-envelope text-primary mt-1 mr-3"></i>
+                            <span class="text-white/70" data-lang-key="footer-email">lionstrpgvault@gmail.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-clock text-primary mt-1 mr-3"></i>
+                            <span class="text-white/70" data-lang-key="footer-hours">10:00-20:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-12 pt-8 text-center">
+                <p class="text-white/50" data-lang-key="footer-copyright">© 2025 胖橘文化有限公司. 保留所有權利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary hover:bg-primary/80 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 opacity-0 translate-y-10 z-50">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+    <script src="js/main.js"></script>
+	<script src="js/languages.js"></script>
+</body>
+
+</html>
