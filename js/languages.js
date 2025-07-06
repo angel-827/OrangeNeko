@@ -190,7 +190,7 @@ const languages = {
 		"footer-hours": "10:00-20:00"
 	},
 	"en": {
-		"company-name": "Fat Orange Culture Co., Ltd.",
+		"company-name": "Orange Neko Ltd.",
 		"nav-home": "Home",
 		"nav-mission": "Mission",
 		"nav-business": "Business",
