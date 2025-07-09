@@ -195,7 +195,7 @@ const languages = {
 		"nav-mission": "Mission",
 		"nav-business": "Business",
 		"nav-contact": "Contact Us",
-		"hero-title": "Fat Orange Culture<br>TRPG Experience Platform",
+		"hero-title": "Orange Neko<br>TRPG Experience Platform",
 		"hero-desc": "Explore fantasy worlds, unleash imagination, and build genuine connections",
 		"hero-btn-1": "Experience Now",
 		"hero-btn-2": "Learn More",
