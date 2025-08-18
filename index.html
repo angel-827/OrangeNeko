@@ -159,40 +159,6 @@
             .scale-hover {
                 @apply transition-transform duration-300 hover:scale-105;
             }
-			h1.text-3xl {
-				/* 原始固定大小样式 */
-				/* font-size: 1.875rem; 相当于30px */
-				/* font-weight: bold; */
-				/* color: #3b82f6; */
-				/* margin-bottom: 0.25rem; */
-				
-				/* 自适应样式 */
-				font-size: clamp(1.5rem, 5vw, 2.5rem); /* 最小1.5rem，理想5vw，最大2.5rem */
-				font-weight: 700;
-				margin-bottom: 0.25rem;
-				transition: all 0.3s ease;
-			}
-			h2.text-4xl {
-				/* 自适应样式 */
-				font-size: clamp(1.5rem, 5vw, 2.5rem); /* 最小1.5rem，理想5vw，最大2.5rem */
-				font-weight: 700;
-				margin-bottom: 0.25rem;
-				transition: all 0.3s ease;
-			}
-			h4.text-2xl {
-				/* 自适应样式 */
-				font-size: clamp(1.5rem, 5vw, 2.5rem); /* 最小1.5rem，理想5vw，最大2.5rem */
-				font-weight: 700;
-				margin-bottom: 0.25rem;
-				transition: all 0.3s ease;
-			}
-			h4.text-xl {
-				/* 自适应样式 */
-				font-size: clamp(1.5rem, 5vw, 2.5rem); /* 最小1.5rem，理想5vw，最大2.5rem */
-				font-weight: 700;
-				margin-bottom: 0.25rem;
-				transition: all 0.3s ease;
-			}
         }
     </style>
     <!-- 引入Inter字体 -->
@@ -220,7 +186,7 @@
                         </div>
                     </div>
                     <div>
-                        <h1 class="text-3xl font-bold text-primary mb-1" data-lang-key="company-name">胖橘文化有限公司</h1>
+                        <h1 class="text-3xl font-bold text-primary mb-1 relative" data-lang-key="company-name">胖橘文化有限公司</h1>
                         <p class="text-base text-dark/70">Orange Neko Ltd.</p>
                     </div>
                 </div>
@@ -426,7 +392,7 @@
                 <!-- 合作伙伴 -->
                 <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
                     <h3 class="text-3xl font-bold text-primary mb-8 text-center" data-lang-key="home-partners">合作夥伴</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-2 gap-8 items-center">
+                    <div class="grid grid-cols-3 md:grid-cols-2 gap-8 items-center">
                         <div class="flex justify-center opacity-70 hover:opacity-100 transition-opacity">
                             <img src="image/partner/LionsVault.png" alt="Partener1_LionsVault" class="h-20 object-contain">
                         </div>
@@ -854,6 +820,7 @@
 </body>
 
 </html>
+
 
 
 
