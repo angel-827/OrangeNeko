@@ -159,6 +159,40 @@
             .scale-hover {
                 @apply transition-transform duration-300 hover:scale-105;
             }
+			h1.text-3xl {
+				/* 原始固定大小样式 */
+				/* font-size: 1.875rem; 相当于30px */
+				/* font-weight: bold; */
+				/* color: #3b82f6; */
+				/* margin-bottom: 0.25rem; */
+				
+				/* 自适应样式 */
+				font-size: clamp(1.5rem, 5vw, 2.5rem); /* 最小1.5rem，理想5vw，最大2.5rem */
+				font-weight: 700;
+				margin-bottom: 0.25rem;
+				transition: all 0.3s ease;
+			}
+			h2.text-4xl {
+				/* 自适应样式 */
+				font-size: clamp(1.5rem, 5vw, 2.5rem); /* 最小1.5rem，理想5vw，最大2.5rem */
+				font-weight: 700;
+				margin-bottom: 0.25rem;
+				transition: all 0.3s ease;
+			}
+			h4.text-2xl {
+				/* 自适应样式 */
+				font-size: clamp(1.5rem, 5vw, 2.5rem); /* 最小1.5rem，理想5vw，最大2.5rem */
+				font-weight: 700;
+				margin-bottom: 0.25rem;
+				transition: all 0.3s ease;
+			}
+			h4.text-xl {
+				/* 自适应样式 */
+				font-size: clamp(1.5rem, 5vw, 2.5rem); /* 最小1.5rem，理想5vw，最大2.5rem */
+				font-weight: 700;
+				margin-bottom: 0.25rem;
+				transition: all 0.3s ease;
+			}
         }
     </style>
     <!-- 引入Inter字体 -->
@@ -396,14 +430,20 @@
                         <div class="flex justify-center opacity-70 hover:opacity-100 transition-opacity">
                             <img src="image/partner/LionsVault.png" alt="Partener1_LionsVault" class="h-20 object-contain">
                         </div>
+						<div class="flex justify-center opacity-70 hover:opacity-100 transition-opacity">
+                            <img src="image/partner/hospitalcrazy.png" alt="hospitalcrazy" class="h-20 object-contain">
+                        </div>
                         <div class="flex justify-center opacity-70 hover:opacity-100 transition-opacity">
                             <img src="image/partner/MiBao.png" alt="Partener2_Mibao" class="h-20 object-contain">
                         </div>
                         <div class="flex justify-center opacity-70 hover:opacity-100 transition-opacity">
                             <h4 class="text-2xl font-bold text-primary mb-6 text-center" data-lang-key="partners1">老獅的藏寶庫</h4>
                         </div>
+						<div class="flex justify-center opacity-70 hover:opacity-100 transition-opacity">
+                            <h4 class="text-2xl font-bold text-primary mb-6 text-center" data-lang-key="partners2">醫院也瘋狂</h4>
+                        </div>
                         <div class="flex justify-center opacity-70 hover:opacity-100 transition-opacity">
-                            <h4 class="text-2xl font-bold text-primary mb-6 text-center" data-lang-key="partners2">謎寶空間</h4>
+                            <h4 class="text-2xl font-bold text-primary mb-6 text-center" data-lang-key="partners3">謎寶空間</h4>
                         </div>
                     </div>
                 </div>
@@ -814,5 +854,6 @@
 </body>
 
 </html>
+
 
 
